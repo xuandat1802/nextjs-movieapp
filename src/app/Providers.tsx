@@ -5,7 +5,7 @@ import { ThemeProvider } from 'next-themes'
 export default function Providers({children}:any) {
   return (
     <ThemeProvider defaultTheme='system' attribute='class'>
-        <div className='text-black dark:text-black dark:bg-white  select-none min-h-screen duration-300 transition-colors'>
+        <div className='text-white dark:text-black dark:bg-white  select-none min-h-screen duration-300 transition-colors'>
         {children}
         </div>
     </ThemeProvider>
