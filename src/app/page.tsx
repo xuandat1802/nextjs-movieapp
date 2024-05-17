@@ -10,8 +10,7 @@ export default async function Home({searchParams}:any) {
   const data=await respone.json();
   if(!respone.ok)
     {
-      alert('fail to fetch data');
-      console.log("fail");
+     throw new Error('fail to fetch data');
     }
      const results = data.results;
      console.log(results);
