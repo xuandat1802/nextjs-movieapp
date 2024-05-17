@@ -4,11 +4,11 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 export default function Navbaritem({title,param}:any) {
     const searchparam= useSearchParams();
-    const pm=searchparam.get(param);
+    const genre=searchparam.get('genre');
   return (
    <div>
     <Link
-    className={'hover:text-amber-500'}
+    className={`hover:text-amber-400 font-semibold ${genre===param?'underline underline-offset-8 decoration-4 decoration-amber-500 rounded-lg':''}`}
     href= {`/?genre=${param}`}>
     {title}
     </Link>
