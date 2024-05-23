@@ -1,10 +1,31 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import { FiThumbsUp } from 'react-icons/fi';
-export default async function Moviepage({params}:any) {
-    const movieid= params.id;
-    const res= await fetch(`https://api.themoviedb.org/3/movie/${movieid}?api_key=${process.env.API_KEY}`);
-    const movie=await res.json();
+import axios from 'axios';
+export default function Moviepage({params}:any) {
+  const movieid= params.id;
+  const [movie,setmovie]=useState<any>([]);
+  useEffect(()=>
+  {
+    const FetchMovie=async()=>
+      {
+        try{
+          const res= await axios.get(`https://api.themoviedb.org/3/movie/${movieid}?api_key=7a29864549f0bc60b5bad88abb41ea99`);
+       
+          setmovie(res.data);
+          
+        }
+        catch(err)
+        {
+          console.error('fail to loading data',err);
+        }
+  
+
+      };FetchMovie()
+  },[movieid]);
+    
+
   return (
     <div className='w-full'>
      <div className='flex gap-5 md:pt-8 flex-col md:flex-row max-w-6xl p4 content-center mx-auto sm:m-x-6'>
