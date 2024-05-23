@@ -4,18 +4,9 @@ export default function About() {
   return (
     <div className='max-w-6xl mx-auto p-3 space-y-4 '>
     <h1 className='text-amber-500'>ABOUT</h1>
-    <p>
-    Title: The Digital Odyssey<br/>
-
-    Genre: Sci-Fi / Thriller<br/>
-
-    Director: Jane Doe<br/>
-
-    Cast: John Smith, Emily Johnson, Michael Brown, Sara Lee<br/>
-
-    Runtime: 1h 45m<br/>
-
-    Rating: 8/10<br/>
+    <h2 className='font-bold'>Introduction</h2>
+    <p className='w-max-4xl'>
+    In modern web development, integrating external APIs has become a common practice to enrich web applications with real-time data. One popular use case is integrating a movie API to fetch information about movies, such as their titles, descriptions, ratings, and posters. This guide will walk you through the process of integrating a movie API into your web application.
     </p><br/>
 
     <p>
