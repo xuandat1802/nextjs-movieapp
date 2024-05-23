@@ -3,6 +3,7 @@ import Results from "@/components/Results";
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { promises } from "dns";
 export default function Searchpage({ params }: any) {
   const SearchTerm = params.searchterm;
   const [results, setres] = useState<any>();
