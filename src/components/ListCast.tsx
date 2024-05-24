@@ -2,15 +2,13 @@ import React from "react";
 import Image from "next/image";
 export default function ListCast({ style }: any) {
   return (
-    <div className="flex gap-x-1 max-w-4xl">
+    <div>
       <Image
-        src={`https://image.tmdb.org/t/p/original/${
-          style.poster_path || style.backdrop_path
-        }`}
-        className="rounded-full w-14 h-12"
+        src={`https://image.tmdb.org/t/p/original/${style.profile_path}`}
+        className="rounded-full w-14 h-12 text-xs hover:scale-150"
         width={500}
         height={300}
-        alt="list cast"
+        alt={style.name}
       ></Image>
     </div>
   );

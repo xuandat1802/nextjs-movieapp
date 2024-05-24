@@ -17,7 +17,6 @@ export default function Home({ searchParams }: any) {
         );
 
         setresult(res.data.results);
-        console.log(res);
         console.log("fetch data success");
       } catch (error) {
         console.error("fail to fetch data", error);
