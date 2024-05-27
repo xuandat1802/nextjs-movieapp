@@ -25,24 +25,6 @@ export default function Home({ searchParams }: any) {
     callapi();
   }, [genre]);
 
-  // useEffect(() => {
-  //     const fetchMovies = async () => {
-
-  //         const endpoint = genre === 'fetchrarting'
-  //             ? 'https://api.themoviedb.org/3/movie/top_rated'
-  //             : 'https://api.themoviedb.org/3/trending/all/week';
-
-  //         try {
-  //             const response = await axios.get(`${endpoint}?api_key=7a29864549f0bc60b5bad88abb41ea99&language=en-US&page=1`);
-  //             setresult(response.data.results);
-  //         } catch (err) {
-  //             console.log("fail",err);
-  //         }
-  //     };
-
-  //     fetchMovies();
-  // }, [genre]);
-
   return (
     <div>
       <Results results={results} />

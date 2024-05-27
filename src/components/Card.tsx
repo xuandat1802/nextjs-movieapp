@@ -1,8 +1,40 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { FiThumbsUp } from "react-icons/fi";
+import { useState, useEffect } from "react";
 export default function Card({ result }: any) {
+  const [saved, setsaved] = useState<boolean>(false);
+  const [mounted, setmounted] = useState<boolean>(false);
+  useEffect(() => setmounted(true), []);
+  useEffect(() => {
+    if (mounted) {
+      const savedResults = JSON.parse(localStorage.getItem("results") || "[]");
+      if (
+        savedResults.some((savedResult: any) => savedResult.id === result.id)
+      ) {
+        setsaved(true);
+      }
+    }
+  }, [mounted, result.id]);
+
+  const handlesave = () => {
+    const savedResults = JSON.parse(localStorage.getItem("results") || "[]");
+    if (saved) {
+      // Remove the result from savedResults
+      const newSavedResults = savedResults.filter(
+        (savedResult: any) => savedResult.id !== result.id
+      );
+      localStorage.setItem("results", JSON.stringify(newSavedResults));
+      setsaved(false); // Set the state to unsaved
+    } else {
+      // Add the result to savedResults
+      savedResults.push(result);
+      localStorage.setItem("results", JSON.stringify(savedResults));
+      setsaved(true); // Set the state to saved
+    }
+  };
   return (
     <div className="group p-1 cursor-pointer sm:hover:shadow-slate-500 sm:shadow-md sm:border sm:border-slate-500 rounded-lg sm:m-2 transition-shadow duration-200">
       <Link href={`/movie/${result.id}`}>
@@ -24,13 +56,17 @@ export default function Card({ result }: any) {
           <FiThumbsUp /> {result.vote_count}
         </div>
       </Link>
+
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="size-6"
+        className={`size-6 ${
+          saved ? "text-red-600" : "text-gray-600"
+        } hover:text-red-600`}
+        onClick={handlesave}
       >
         <path
           strokeLinecap="round"

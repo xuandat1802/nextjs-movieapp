@@ -2,6 +2,7 @@ import React from "react";
 import MenuItem from "./MenuItem";
 import { AiFillHome } from "react-icons/ai";
 import { BsInfoCircleFill } from "react-icons/bs";
+import { HiHeart } from "react-icons/hi";
 import Link from "next/link";
 import DarkModeSys from "./DarkModeSys";
 
@@ -11,6 +12,7 @@ export default function Header() {
       <div className="flex gap-4">
         <MenuItem title="home" adress="/" Icon={AiFillHome} />
         <MenuItem title="about" adress="/about" Icon={BsInfoCircleFill} />
+        <MenuItem title="favorite" adress="/favorites" Icon={HiHeart} />
       </div>
 
       <div className="flex gap-2 items-center">
