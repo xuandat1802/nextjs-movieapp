@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 export default function Card({ result }: any) {
   const [saved, setsaved] = useState<boolean>(false);
   const [mounted, setmounted] = useState<boolean>(false);
+  const [input, SetInput] = useState<any[]>([]);
+
   useEffect(() => setmounted(true), []);
   useEffect(() => {
     if (mounted) {
