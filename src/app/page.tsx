@@ -4,9 +4,8 @@ import axios from "axios";
 import Results from "@/components/Results";
 import { useState, useEffect } from "react";
 export default function Home({ searchParams }: any) {
-  const API_KEY = process.env.API_KEY;
   const genre = searchParams.genre || "fetchtrending";
-  const [results, setresult] = useState();
+  const [results, setResult] = useState();
   useEffect(() => {
     const callapi = async () => {
       try {
@@ -16,7 +15,7 @@ export default function Home({ searchParams }: any) {
           }?api_key=7a29864549f0bc60b5bad88abb41ea99&language=en-US&page=1`
         );
 
-        setresult(res.data.results);
+        setResult(res.data.results);
         console.log("fetch data success");
       } catch (error) {
         console.error("fail to fetch data", error);

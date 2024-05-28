@@ -5,11 +5,11 @@ import Image from "next/image";
 import { FiThumbsUp } from "react-icons/fi";
 import { useState, useEffect } from "react";
 export default function Card({ result }: any) {
-  const [saved, setsaved] = useState<boolean>(false);
+  const [saved, setSaved] = useState<boolean>(false);
   useEffect(() => {
     const savedResults = JSON.parse(localStorage.getItem("results") || "[]");
     if (savedResults.some((savedResult: any) => savedResult.id === result.id)) {
-      setsaved(true);
+      setSaved(true);
     }
   }, [result.id]);
   const handlesave = () => {
@@ -20,12 +20,12 @@ export default function Card({ result }: any) {
         (savedResult: any) => savedResult.id !== result.id
       );
       localStorage.setItem("results", JSON.stringify(newSavedResults));
-      setsaved(false); // Set the state to unsaved
+      setSaved(false); // Set the state to unsaved
     } else {
       // Add the result to savedResults
       savedResults.push(result);
       localStorage.setItem("results", JSON.stringify(savedResults));
-      setsaved(true); // Set the state to saved
+      setSaved(true); // Set the state to saved
     }
   };
 

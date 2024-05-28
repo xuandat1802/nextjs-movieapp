@@ -4,7 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 export default function CastPage({ params }: any) {
   const Castid = params.id;
-  const [style, setstyle] = useState<any>([]);
+  const [style, setStyle] = useState<any>([]);
 
   //search cast
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function CastPage({ params }: any) {
           `https://api.themoviedb.org/3/person/${Castid}?api_key=7a29864549f0bc60b5bad88abb41ea99`
         );
 
-        setstyle(res.data);
+        setStyle(res.data);
         console.log("fetch data success");
         console.log(res.data);
       } catch (error) {

@@ -7,8 +7,8 @@ import ListCastResult from "@/components/ListCastResult";
 import ListStyleMovie from "@/components/ListStyleMovie";
 export default function Moviepage({ params }: any) {
   const movieid = params.id;
-  const [movie, setmovie] = useState<any>([]);
-  const [style, setstyle] = useState<any>();
+  const [movie, setMovie] = useState<any>([]);
+  const [style, setStyle] = useState<any>();
   const [listmovie, setlist] = useState<any>([]);
   //detail movie
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Moviepage({ params }: any) {
           `https://api.themoviedb.org/3/movie/${movieid}?api_key=7a29864549f0bc60b5bad88abb41ea99` //fix
         );
         console.log(res.data);
-        setmovie(res.data);
+        setMovie(res.data);
         console.log("fecth movieid success");
       } catch (err) {
         console.error("fail to loading data", err);
@@ -34,7 +34,7 @@ export default function Moviepage({ params }: any) {
           `https://api.themoviedb.org/3/movie/${movieid}/credits?api_key=7a29864549f0bc60b5bad88abb41ea99` //fix
         );
 
-        setstyle(res.data.cast.slice(0, 10));
+        setStyle(res.data.cast.slice(0, 10));
         console.log("fetch data success");
         // console.log(res.data.cast.slice(0, 10));
       } catch (error) {

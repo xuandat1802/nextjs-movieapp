@@ -6,14 +6,14 @@ import { useState, useEffect } from "react";
 import { promises } from "dns";
 export default function Searchpage({ params }: any) {
   const SearchTerm = params.searchterm;
-  const [results, setres] = useState<any>();
+  const [results, setRes] = useState<any>();
   useEffect(() => {
     const Fetchsearch = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/search/movie?api_key=7a29864549f0bc60b5bad88abb41ea99&query=${SearchTerm}&language=en-US&page=1&include_adult=false`
         );
-        setres(res.data.results);
+        setRes(res.data.results);
         console.log("success");
       } catch (err) {
         console.error("fail to fetch search", err);
