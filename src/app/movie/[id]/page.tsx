@@ -17,7 +17,7 @@ export default function Moviepage({ params }: any) {
         const res = await axios.get(
           `https://api.themoviedb.org/3/movie/${movieid}?api_key=7a29864549f0bc60b5bad88abb41ea99` //fix
         );
-        console.log(res.data);
+
         setMovie(res.data);
         console.log("fecth movieid success");
       } catch (err) {

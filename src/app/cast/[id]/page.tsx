@@ -3,26 +3,25 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 export default function CastPage({ params }: any) {
-  const Castid = params.id;
+  const CastId = params.id;
   const [style, setStyle] = useState<any>([]);
 
   //search cast
   useEffect(() => {
-    const callapi1 = async () => {
+    const FetchListCast = async () => {
       try {
         const res = await axios.get(
-          `https://api.themoviedb.org/3/person/${Castid}?api_key=7a29864549f0bc60b5bad88abb41ea99`
+          `https://api.themoviedb.org/3/person/${CastId}?api_key=7a29864549f0bc60b5bad88abb41ea99`
         );
 
         setStyle(res.data);
         console.log("fetch data success");
-        console.log(res.data);
       } catch (error) {
         console.error("fail to fetch data", error);
       }
     };
-    callapi1();
-  }, [Castid]);
+    FetchListCast();
+  }, [CastId]);
 
   return (
     <div className="w-full">
