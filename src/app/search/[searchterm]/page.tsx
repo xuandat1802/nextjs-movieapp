@@ -8,7 +8,7 @@ export default function Searchpage({ params }: any) {
   const SearchTerm = params.searchterm;
   const [results, setRes] = useState<any>();
   useEffect(() => {
-    const Fetchsearch = async () => {
+    const FetchSearch = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/search/movie?api_key=7a29864549f0bc60b5bad88abb41ea99&query=${SearchTerm}&language=en-US&page=1&include_adult=false`
@@ -19,7 +19,7 @@ export default function Searchpage({ params }: any) {
         console.error("fail to fetch search", err);
       }
     };
-    Fetchsearch();
+    FetchSearch();
   }, [SearchTerm]);
 
   return (
