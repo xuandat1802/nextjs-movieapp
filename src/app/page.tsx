@@ -7,7 +7,7 @@ export default function Home({ searchParams }: any) {
   const genre = searchParams.genre || "fetchtrending";
   const [results, setResult] = useState();
   useEffect(() => {
-    const getDetailMovie = async () => {
+    const fetchDetailMovie = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3${
@@ -21,7 +21,7 @@ export default function Home({ searchParams }: any) {
         console.error("fail to fetch data", error);
       }
     };
-    getDetailMovie();
+    fetchDetailMovie();
   }, [genre]);
 
   return (

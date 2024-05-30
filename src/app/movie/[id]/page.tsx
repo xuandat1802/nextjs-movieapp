@@ -9,10 +9,10 @@ export default function Moviepage({ params }: any) {
   const movieid = params.id;
   const [movie, setMovie] = useState<any>([]);
   const [style, setStyle] = useState<any>();
-  const [listmovie, setlist] = useState<any>([]);
+  const [listMovie, setList] = useState<any>([]);
   //detail movie
   useEffect(() => {
-    const FetchMovie = async () => {
+    const fetchMovie = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/movie/${movieid}?api_key=7a29864549f0bc60b5bad88abb41ea99` //fix
@@ -24,11 +24,11 @@ export default function Moviepage({ params }: any) {
         console.error("fail to loading data", err);
       }
     };
-    FetchMovie();
+    fetchMovie();
   }, [movieid]);
   //search cast
   useEffect(() => {
-    const callapi1 = async () => {
+    const fetchCast = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/movie/${movieid}/credits?api_key=7a29864549f0bc60b5bad88abb41ea99` //fix
@@ -41,17 +41,17 @@ export default function Moviepage({ params }: any) {
         console.error("fail to fetch data", error);
       }
     };
-    callapi1();
+    fetchCast();
   }, [movieid]);
   //call list movie
   useEffect(() => {
-    const callapi1 = async () => {
+    const fetchListMovie = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/movie/popular?api_key=7a29864549f0bc60b5bad88abb41ea99`
         );
 
-        setlist(res.data.results);
+        setList(res.data.results);
         console.log(res.data.results);
         console.log("fetch data success");
         // console.log(res.data.cast.slice(0, 10));
@@ -59,7 +59,7 @@ export default function Moviepage({ params }: any) {
         console.error("fail to fetch data", error);
       }
     };
-    callapi1();
+    fetchListMovie();
   }, []);
   return (
     <div className="w-full">
@@ -86,7 +86,7 @@ export default function Moviepage({ params }: any) {
           <p className="font-bold">List Casts</p>
           <ListCastResult styles={style} />
           <p className="font-bold">List Movies</p>
-          <ListStyleMovie movie={movie} listmovie={listmovie} />
+          <ListStyleMovie movie={movie} listmovie={listMovie} />
         </div>
       </div>
     </div>

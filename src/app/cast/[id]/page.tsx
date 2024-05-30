@@ -8,7 +8,7 @@ export default function CastPage({ params }: any) {
 
   //search cast
   useEffect(() => {
-    const FetchListCast = async () => {
+    const fetchListCast = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/person/${CastId}?api_key=7a29864549f0bc60b5bad88abb41ea99`
@@ -20,7 +20,7 @@ export default function CastPage({ params }: any) {
         console.error("fail to fetch data", error);
       }
     };
-    FetchListCast();
+    fetchListCast();
   }, [CastId]);
 
   return (
