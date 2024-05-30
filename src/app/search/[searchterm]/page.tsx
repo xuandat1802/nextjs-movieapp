@@ -3,6 +3,7 @@ import Results from "@/components/Results";
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { resultContext } from "@/app/UseContext/context";
 export default function Searchpage({ params }: any) {
   const SearchTerm = params.searchterm;
   const [results, setResults] = useState<any>();
@@ -22,12 +23,14 @@ export default function Searchpage({ params }: any) {
   }, [SearchTerm]);
 
   return (
-    <div>
-      {results && results.length === 0 && (
-        <h1 className="text-center pt-14">No found result</h1>
-      )}
+    <resultContext.Provider value={results}>
+      <div>
+        {results && results.length === 0 && (
+          <h1 className="text-center pt-14">No found result</h1>
+        )}
 
-      {results && <Results results={results} />}
-    </div>
+        {results && <Results />}
+      </div>
+    </resultContext.Provider>
   );
 }
