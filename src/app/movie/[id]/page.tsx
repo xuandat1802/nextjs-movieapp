@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { FiThumbsUp } from "react-icons/fi";
 import axios from "axios";
@@ -45,7 +45,7 @@ export default function Moviepage({ params }: any) {
   }, [movieid]);
   //call list movie
   useEffect(() => {
-    const fetchListMovie = async () => {
+    const fetchListCardMovie = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/movie/popular?api_key=7a29864549f0bc60b5bad88abb41ea99`
@@ -59,7 +59,7 @@ export default function Moviepage({ params }: any) {
         console.error("fail to fetch data", error);
       }
     };
-    fetchListMovie();
+    fetchListCardMovie();
   }, []);
   return (
     <div className="w-full">

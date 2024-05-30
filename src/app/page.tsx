@@ -3,11 +3,12 @@ import React from "react";
 import axios from "axios";
 import Results from "@/components/Results";
 import { useState, useEffect } from "react";
+import { resultContext } from "./UseContext/context";
 export default function Home({ searchParams }: any) {
   const genre = searchParams.genre || "fetchtrending";
-  const [results, setResult] = useState();
+  const [results, setResult] = useState<any>([]);
   useEffect(() => {
-    const fetchDetailMovie = async () => {
+    const fetchGenreMovie = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3${
@@ -21,12 +22,12 @@ export default function Home({ searchParams }: any) {
         console.error("fail to fetch data", error);
       }
     };
-    fetchDetailMovie();
+    fetchGenreMovie();
   }, [genre]);
 
   return (
-    <div>
-      <Results results={results} />
-    </div>
+    <resultContext.Provider value={results}>
+      <Results />
+    </resultContext.Provider>
   );
 }
