@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
-export default function ListCardMovie({ list }: any) {
+import { listStyleMovieContext } from "./ListStyleMovie";
+export default function ListCardMovie() {
+  const list = useContext(listStyleMovieContext);
+
   return (
     <div>
       <Link href={`/movie/${list.id}`}>

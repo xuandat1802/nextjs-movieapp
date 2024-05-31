@@ -1,12 +1,18 @@
-import React from "react";
+import React, { createContext, useContext } from "react";
 import ListCardMovie from "./ListCardMovie";
-
-export default function ListStyleMovie({ movie, listmovie }: any) {
+import { detailMovieContext } from "@/app/UseContext/context";
+export const listStyleMovieContext = createContext<any>([]);
+export default function ListStyleMovie() {
+  const listData = useContext(detailMovieContext);
   return (
     <div className="relative flex items-center">
-      {listmovie?.map((list: any) =>
-        movie.genres?.map((genreid: any) => genreid.id === list.genre_ids) ? (
-          <ListCardMovie key={list.id} list={list} />
+      {listData.listMovie?.map((list: any) =>
+        listData.movie.genres?.map(
+          (genreid: any) => genreid.id === list.genre_ids
+        ) ? (
+          <listStyleMovieContext.Provider value={list} key={list.id}>
+            <ListCardMovie />
+          </listStyleMovieContext.Provider>
         ) : (
           ""
         )
