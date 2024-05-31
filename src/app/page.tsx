@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import axios from "axios";
-import Results from "@/components/Results";
 import { useState, useEffect } from "react";
 import { resultContext } from "./UseContext/context";
+import Card from "@/components/Card";
 export default function Home({ searchParams }: any) {
   const genre = searchParams.genre || "fetchtrending";
   const [results, setResult] = useState<any>([]);
@@ -26,8 +26,12 @@ export default function Home({ searchParams }: any) {
   }, [genre]);
 
   return (
-    <resultContext.Provider value={results}>
-      <Results />
-    </resultContext.Provider>
+    <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-6xl mx-auto py-4">
+      {results?.map((result: any) => (
+        <resultContext.Provider value={result} key={result.id}>
+          <Card />
+        </resultContext.Provider>
+      ))}
+    </div>
   );
 }

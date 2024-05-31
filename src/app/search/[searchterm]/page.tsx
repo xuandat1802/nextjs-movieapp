@@ -4,6 +4,7 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { resultContext } from "@/app/UseContext/context";
+import Card from "@/components/Card";
 export default function Searchpage({ params }: any) {
   const SearchTerm = params.searchterm;
   const [results, setResults] = useState<any>();
@@ -23,14 +24,18 @@ export default function Searchpage({ params }: any) {
   }, [SearchTerm]);
 
   return (
-    <resultContext.Provider value={results}>
-      <div>
-        {results && results.length === 0 && (
-          <h1 className="text-center pt-14">No found result</h1>
-        )}
+    <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-6xl mx-auto py-4">
+      {results?.map((result: any) => (
+        <resultContext.Provider value={result} key={result.id}>
+          <div>
+            {result && results.length === 0 && (
+              <h1 className="text-center pt-14">No found result</h1>
+            )}
 
-        {results && <Results />}
-      </div>
-    </resultContext.Provider>
+            {result && <Card />}
+          </div>
+        </resultContext.Provider>
+      ))}
+    </div>
   );
 }

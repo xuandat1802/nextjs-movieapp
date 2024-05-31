@@ -4,9 +4,9 @@ import React from "react";
 import Image from "next/image";
 import { FiThumbsUp } from "react-icons/fi";
 import { useState, useEffect, useContext } from "react";
-import { resultCardContext } from "./Results";
+import { resultContext } from "@/app/UseContext/context";
 export default function Card() {
-  const result = useContext(resultCardContext);
+  const result = useContext(resultContext);
   const [saved, setSaved] = useState<boolean>(false);
   useEffect(() => {
     const savedResults = JSON.parse(localStorage.getItem("results") || "[]");
