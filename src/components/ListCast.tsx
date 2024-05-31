@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { listCastContext } from "./ListCastResult";
+import { listCastContext } from "@/app/UseContext/context";
 export default function ListCast() {
   const style = useContext(listCastContext);
   return (
