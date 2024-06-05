@@ -3,7 +3,6 @@ import React, { createContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { FiThumbsUp } from "react-icons/fi";
 import axios from "axios";
-import { listCastContext } from "@/app/UseContext/context";
 import { detailMovieContext } from "@/app/UseContext/context";
 import ListCast from "@/components/ListCast";
 import ListCardMovie from "@/components/ListCardMovie";
@@ -21,6 +20,7 @@ export default function Moviepage({ params }: any) {
         );
 
         setMovie(res.data);
+        console.log(res.data);
         console.log("fecth movieid success");
       } catch (err) {
         console.error("fail to loading data", err);
@@ -62,43 +62,35 @@ export default function Moviepage({ params }: any) {
     fetchListCardMovie();
   }, []);
   return (
-    <div className="w-full">
-      <div className="flex gap-5 md:pt-8 flex-col md:flex-row max-w-6xl p4 content-center mx-auto sm:m-x-6">
-        <Image
-          src={`https://image.tmdb.org/t/p/original/${
-            movie.poster_path || movie.backdrop_path
-          }`}
-          alt="img"
-          width={500}
-          height={300}
-          className="w-76 h-96 rounded-lg"
-        ></Image>
+    <detailMovieContext.Provider value={{ listMovie, movie, style }}>
+      <div className="w-full">
+        <div className="flex gap-5 md:pt-8 flex-col md:flex-row max-w-6xl p4 content-center mx-auto sm:m-x-6">
+          <Image
+            src={`https://image.tmdb.org/t/p/original/${
+              movie.poster_path || movie.backdrop_path
+            }`}
+            alt="img"
+            width={500}
+            height={300}
+            className="w-76 h-96 rounded-lg"
+          ></Image>
 
-        <div className="gap-y-2">
-          <p className="font-bold">{movie.name || movie.original_title}</p>
-          <p>{movie.overview}</p>
-          <p className="font-semibold">{movie.release_date}</p>
+          <div className="gap-y-2">
+            <p className="font-bold">{movie.name || movie.original_title}</p>
+            <p>{movie.overview}</p>
+            <p className="font-semibold">{movie.release_date}</p>
 
-          <div className="flex gap-x-2 items-center">
-            <FiThumbsUp />
-            <p>{movie.vote_count}</p>
-          </div>
-          <p className="font-bold">List Casts</p>
-          <div className="relative flex items-center ">
-            {style?.map((styles: any) => (
-              <listCastContext.Provider value={styles} key={styles.id}>
-                <ListCast />
-              </listCastContext.Provider>
-            ))}
-          </div>
-          <p className="font-bold">List Movies</p>
-          <div className="relative flex items-center">
-            <detailMovieContext.Provider value={{ listMovie, movie }}>
-              <ListCardMovie />
-            </detailMovieContext.Provider>
+            <div className="flex gap-x-2 items-center">
+              <FiThumbsUp />
+              <p>{movie.vote_count}</p>
+            </div>
+            <p className="font-bold">List Casts</p>
+            <ListCast />
+            <p className="font-bold">List Movies</p>
+            <ListCardMovie />
           </div>
         </div>
       </div>
-    </div>
+    </detailMovieContext.Provider>
   );
 }

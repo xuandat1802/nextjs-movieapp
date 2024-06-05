@@ -5,9 +5,12 @@ import Image from "next/image";
 import { FiThumbsUp } from "react-icons/fi";
 import { useState, useEffect, useContext } from "react";
 import { resultContext } from "@/app/UseContext/context";
+document.cookie = `username=ted mofi; max-age=9000`;
+
 export default function Card() {
   const result = useContext(resultContext);
   const [saved, setSaved] = useState<boolean>(false);
+
   useEffect(() => {
     const savedResults = JSON.parse(localStorage.getItem("results") || "[]");
     if (savedResults.some((savedResult: any) => savedResult.id === result.id)) {
